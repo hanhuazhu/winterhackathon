@@ -3,6 +3,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+
 const sequelize = new Sequelize(process.env.POSTGRES_URI);
 
 const PORT = process.env.PORT || 8080;
@@ -16,7 +17,7 @@ const connect = async () => {
   }
 }
 
-const userRouter = require('./v1/routes');
+const userRouter = require('./v1/routes/userRouters.js');
 
 const app = express();
 
