@@ -9,9 +9,9 @@ const findOneUser = async (username) => {
   }
 }
 
-const createOneUser = async (username, firstName, lastName) => {
+const createOneUser = async (username, password, firstName, lastName) => {
   try {
-    const oneUser = await User.create(username, firstName, lastName);
+    const oneUser = await User.create(username, password, firstName, lastName);
     return oneUser;
   } catch(error) {
     throw error;
