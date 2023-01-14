@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models');
-require('dotenv').config();
 
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 3001;
 
 const connect = async () => {
   try {
@@ -30,6 +29,6 @@ app.use(express.json({ extended: false }));
 
 app.use('/api/v1/user', userRouter);
 
-app.listen(PORT, () => {
-    console.log(`API is open on port ${PORT}`);
+app.listen(PORT, async() => {
+  console.log(`API is open on port ${PORT}`);
 });
