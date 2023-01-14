@@ -60,6 +60,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('biometrics');
+    // await queryInterface.dropTable('biometrics');
   }
 };

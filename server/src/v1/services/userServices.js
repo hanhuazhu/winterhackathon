@@ -5,7 +5,8 @@ const findOneUser = async (username) => {
     const oneUser = await User.findOne({ where: {username: username} });
     return oneUser;
   } catch(error) {
-    throw error;
+    console.log(error)
+    return error;
   }
 }
 

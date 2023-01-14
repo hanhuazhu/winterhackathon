@@ -16,51 +16,51 @@ module.exports = (sequelize, DataTypes) => {
   Biometrics.init({
     height: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     weight: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     bmi: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     blood_pressure: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     pulse: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     fbg: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     exercise_history: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     smoking: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     current_exercise: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     cholesterol_levels: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     triglycerides: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,

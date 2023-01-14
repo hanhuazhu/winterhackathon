@@ -6,7 +6,7 @@ const {
 } = require('../controllers/userControllers');
 const userRouter = express.Router();
 
-userRouter.get('/:id', getOneUser);
+userRouter.get('/:username', getOneUser);
 
 userRouter.post('/', postOneUser);
 

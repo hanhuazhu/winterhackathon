@@ -6,7 +6,7 @@ const {
 
 const getOneUser = async (req, res) => {
   try {
-    const username = req.params.id;
+    const username = req.params.username;
     const oneUser = await findOneUser(username);
     res.json({
       status: 'OK',
