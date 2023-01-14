@@ -16,7 +16,7 @@ class App extends Component {
       {/* BrowserRouter catches the request from the browser and re-renders the page without requesting a new DOM */}
         <div>
           <Routes>
-            {/* These routes point assign an element to render. The elements are imported from each JS view file */}
+            {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/RxLookup' element={<Lookup />} />
