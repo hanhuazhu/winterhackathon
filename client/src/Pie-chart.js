@@ -15,11 +15,6 @@ import {Colors} from "chart.js";
 // import {ade, amount} from "./Drug-search-bar";
 
 const PieGraph1=({foundAdverseEvents}) => {
-useEffect(() => {
-  console.log("foundAdverseEvents within Pie Chart", foundAdverseEvents);
-}, [foundAdverseEvents])
-foundAdverseEvents !== undefined && console.log('%cfoundAdverEvents', foundAdverseEvents, "color:green")
-// function PieGraph1() {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -53,8 +48,20 @@ foundAdverseEvents !== undefined && console.log('%cfoundAdverEvents', foundAdver
           label: "Total reported side effects",
           data: foundAdverseEvents.amount,
           borderColor: "rgb(53,162, 135",
-          backgroundColor: "rgba(53, 162, 235, 0.4)",
-          hoverBorderColor: "rgb(235, 64, 52)"
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'purple',
+            'brown'
+          ],
+          hoverBorderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'purple',
+            'brown'
+          ],
         },
       ],
     });
@@ -65,7 +72,7 @@ foundAdverseEvents !== undefined && console.log('%cfoundAdverEvents', foundAdver
           position: "right"
         },
         title: {
-          display: true,
+          display: false,
           text: "Drug Name"
         }
       }

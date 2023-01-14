@@ -15,11 +15,18 @@ function Drug() {
         "ade": ["ONE", "TWO", "THREE", "FOUR", "FIVE"], 
         "amount": [100,200,300,400,500]
     })
-    const [foundTest, setTest] = useState({})
+    const [foundTest, setTest] = useState({
+        "info": ["ONE"],
+        "problem": ["TWO"]
+    })
 
     useEffect(() => {
-        console.log('foundAdverseEvents within Drug.js', foundAdverseEvents)
+        // console.log('foundAdverseEvents within Drug.js', foundAdverseEvents)
     }, [foundAdverseEvents])
+    useEffect(() => {
+        // console.log('foundTest within Drug.js', foundTest)
+    }, [foundTest])
+    
 
     return (
         <Container style={{ 
@@ -29,21 +36,21 @@ function Drug() {
                 
             </Col>
             <Col>
+                
                 <Row>
-                    <Row>
-                        <h1>DRUG SEARCHER</h1>
-                        
-                    </Row>
-                    <Row>
-                        <SearchBar setAdverseEvents={setAdverseEvents} setTest={setTest} />
-                    </Row>
+                    <h1>DRUG SEARCHER</h1>
+                    
                 </Row>
+                <Row>
+                    <SearchBar setAdverseEvents={setAdverseEvents} setTest={setTest} />
+                </Row>
+                
             </Col>
             <Col>
                 <Row>
                     <Row>
                         <Col>
-                            <BarGraph1 />
+                           { /* <Bargraph />*/}
                         </Col>
                         <Col>
                             <PieGraph1 foundAdverseEvents={foundAdverseEvents} />
@@ -51,10 +58,12 @@ function Drug() {
                     </Row>
                     <Row>
                         <Col>
-                            <h2>
-                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat
-                            </h2>
+                            {foundTest.info}
                         </Col>
+                        <Col>
+                            {foundTest.problems}
+                        </Col>
+
                     </Row>
                     
                 </Row>
