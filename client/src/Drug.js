@@ -12,8 +12,11 @@ import SearchBar from './Drug-search-bar';
 
 class Drug extends Component {
     render() {
+        
         return (
-            <Container className='window'>
+            <Container style={{ 
+                backgroundImage: `url("/Drug.svg")` 
+              }}>
                 <Col className='p-0 ms-2 mt-2'>
                     
                 </Col>
