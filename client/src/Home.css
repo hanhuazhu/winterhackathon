@@ -1,0 +1,10 @@
+.window {
+    background-size: cover;
+    background-image: url('Landing.svg');
+    height: 100vh;
+}
+
+#logo {
+    height: 100px;
+    width: 200px;
+}
