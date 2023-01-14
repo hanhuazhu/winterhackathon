@@ -14,6 +14,7 @@ const connect = async () => {
 }
 
 const userRouter = require('./v1/routes/userRouters');
+const biometricsRouter = require('./v1/routes/biometricsRouters');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/biometrics', biometricsRouter);
 
 app.listen(PORT, async() => {
   console.log(`API is open on port ${PORT}`);

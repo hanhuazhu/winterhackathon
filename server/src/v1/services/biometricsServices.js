@@ -47,18 +47,8 @@ const createUserBiometrics = async (
         throw error;
     }
 }
-const destroyOneUser = async (username) => {
-    try {
-        const oneUser = await User.destroy({ where: { username: username }});
-        return oneUser;
-    } catch(error) {
-        throw error;
-    }
-}
 
 module.exports = {
     findUserBiometrics,
     createUserBiometrics,
-    destroyUserBiometrics,
-    updateUserBiometrics,
 }
