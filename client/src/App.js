@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Login from './Login';
+import Signup from './Signup';
 
 /* vv Change to whatever we decide on this route vv */
 import Lookup from './Rxlookup';
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path='/' element={<Home />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/RxLookup' element={<Lookup />} />
+            <Route path='/Signup' element={<Signup />} />
           </Routes>
         </div>
       </BrowserRouter>
