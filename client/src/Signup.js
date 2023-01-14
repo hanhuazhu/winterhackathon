@@ -12,13 +12,19 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: '',
             password: '',
             confirmPassword: ''
         }
         
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleConPasswordChange = this.handleConPasswordChange.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleUsernameChange = (event) => {
+        this.setState({username: event.target.value})
     }
 
     handlePasswordChange = (event) => {
@@ -41,7 +47,7 @@ class Signup extends Component {
                 alert('Password must be 8 characters long');
                 return false;
             } else {
-                fetch
+                {/* Needs fetch here */}
                 return true;
             }
         }
@@ -56,7 +62,7 @@ class Signup extends Component {
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formUsername'>
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type='text' placeholder='Enter username' autoComplete='username'/>
+                                <Form.Control type='text' placeholder='Enter username' autoComplete='username' onChange={this.handleUsernameChange}/>
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formPassword'>
                                 <Form.Label>Password</Form.Label>
