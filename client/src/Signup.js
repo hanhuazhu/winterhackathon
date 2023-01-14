@@ -12,6 +12,8 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            firstName: '',
+            lastName: '',
             username: '',
             password: '',
             confirmPassword: ''
@@ -20,8 +22,19 @@ class Signup extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleConPasswordChange = this.handleConPasswordChange.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleFNameChange = this.handleFNameChange.bind(this);
+        this.handleLNameChange = this.handleLNameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleFNameChange = (event) => {
+        this.setState({firstName: event.target.value})
+    }
+
+    handleLNameChange = (event) => {
+        this.setState({lastName: event.target.value})
+    }
+
 
     handleUsernameChange = (event) => {
         this.setState({username: event.target.value})
@@ -38,7 +51,6 @@ class Signup extends Component {
     handleSubmit = (event) => {
         
         event.preventDefault();
-        console.log(this.state.confirmPassword, this.state.password)
         if (this.state.password !== this.state.confirmPassword) {
             alert('Passwords do not match');
             return false;
@@ -47,7 +59,22 @@ class Signup extends Component {
                 alert('Password must be 8 characters long');
                 return false;
             } else {
-                {/* Needs fetch here */}
+                const data = this.state
+                console.log(data)
+                fetch('http://localhost:3001/api/v1/user',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then((response) => {
+                    console.log('success');
+                })
+                .catch((error) => {
+                    console.error('Error: ', error)
+                })
                 return true;
             }
         }
@@ -60,15 +87,23 @@ class Signup extends Component {
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
                         <img src={logo} alt='My HealthCare Logo' width={300}></img>
                         <Form className='w-25'>
-                            <Form.Group className='mb-3' controlId='formUsername'>
+                            <Form.Group className='mb-3' controlId='formBasicText'>
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control type='text' placeholder='First Name' onChange={this.handleFNameChange} />
+                            </Form.Group>
+                            <Form.Group className='mb-3' controlId='formBasicText'>
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control type='text' placeholder='Last Name' onChange={this.handleLNameChange} />
+                            </Form.Group>
+                            <Form.Group className='mb-3' controlId='formBasicUsername'>
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type='text' placeholder='Enter username' autoComplete='username' onChange={this.handleUsernameChange}/>
                             </Form.Group>
-                            <Form.Group className='mb-3' controlId='formPassword'>
+                            <Form.Group className='mb-3' controlId='formBasicPassword'>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type='password' placeholder='Enter password' autoComplete='new-password' onChange={this.handlePasswordChange}/>
                             </Form.Group>
-                            <Form.Group className='mb-3' controlId='formConfirmPassword'>
+                            <Form.Group className='mb-3' controlId='formBasicPassword'>
                                 <Form.Label>Re-Enter Password</Form.Label>
                                 <Form.Control type='password' placeholder='Re-enter password' autoComplete='new-password' onChange={this.handleConPasswordChange}/>
                             </Form.Group>
