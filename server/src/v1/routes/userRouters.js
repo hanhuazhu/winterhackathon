@@ -1,24 +1,15 @@
 const express = require('express');
+const { 
+  getOneUser, 
+  postOneUser,
+  deleteOneUser, 
+} = require('../controllers/userControllers');
 const userRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
+userRouter.get('/:id', getOneUser);
 
-});
+userRouter.post('/', postOneUser);
 
-userRouter.post('/', (req, res) => {
-
-});
-
-userRouter.patch('/', (req, res) => {
-
-});
-
-userRouter.delete('/', (req, res) => {
-
-});
-
-userRouter.get('/', (req, res) => {
-
-});
+userRouter.delete('/:id', deleteOneUser);
 
 module.exports = userRouter;
