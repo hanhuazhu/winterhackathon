@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
 
@@ -23,9 +24,7 @@ function NavBar(props) {
                     <img src={logo} alt='My HealthCare Logo' style={{width: 150, height: 75}}></img>
                   </a>
                     <Nav className='d-flex flex-column col-2 bg-dark text-center w-100 mh-100 gap-4'>
-                      <Nav.Link href='#' id='navlink' className='text-info fw-bolder my-5 fs-3'>Symptom <br /> Tracker</Nav.Link>
-                      <Nav.Link href='#' id='navlink' className='text-info fw-bolder my-5 fs-3'>Primary <br /> Care</Nav.Link>
-                      <Nav.Link href='#' id='navlink' className='text-info fw-bolder my-5 fs-3'>Notification <br /> Settings</Nav.Link>
+                      <Nav.Link href='/RxLookup' id='navlink' className='text-info fw-bolder my-5 fs-3'>Rx Lookup</Nav.Link>
                       <Nav.Link href='#' id='navlink-white' className='text-white fw-bolder mt-5 fs-3'>Logout</Nav.Link>
                     </Nav>
               </Navbar>
@@ -57,10 +56,11 @@ class App extends Component {
           <Routes>
             {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/RxLookup' element={<Lookup />} />
+            <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
-              <Route path='/Login' element={<Login />} />
-              <Route path='/RxLookup' element={<Lookup />} />
-              <Route path='/Signup' element={<Signup />} />
+              <Route path='/UserProfile' element={<User />} /> 
             </Route>
           </Routes>
         </div>

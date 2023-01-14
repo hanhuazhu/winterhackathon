@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { Button, Form } from 'react-bootstrap';
 import { Component } from 'react';
 import logo from './logo_2.svg';
-
+import { Navigate } from 'react-router-dom';
 
 
 class Signup extends Component {
@@ -16,7 +16,8 @@ class Signup extends Component {
             lastName: '',
             username: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            user: null
         }
         
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -59,8 +60,7 @@ class Signup extends Component {
                 alert('Password must be 8 characters long');
                 return false;
             } else {
-                const data = this.state
-                console.log(data)
+                const data = this.state;
                 fetch('http://localhost:3001/api/v1/user',
                 {
                     method: 'POST',
@@ -69,29 +69,30 @@ class Signup extends Component {
                     },
                     body: JSON.stringify(data)
                 })
-                .then((response) => {
-                    console.log('success');
-                })
-                .catch((error) => {
-                    console.error('Error: ', error)
-                })
-                return true;
+                .then(() => {
+                    let user = this.state.username;
+                    this.setState({user: user});
+                }
+                )
             }
         }
     }
 
     render() {
         return (
-            <Container className='window m-0 p-0 mh-100' fluid>
+            <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
                         <img src={logo} alt='My HealthCare Logo' width={300}></img>
+                        {this.state.user && (
+                            <Navigate to="/UserProfile" replace={true} />
+                        )}
                         <Form className='w-25'>
-                            <Form.Group className='mb-3' controlId='formBasicText'>
+                            <Form.Group className='mb-3' controlId='formBasicFirstName'>
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control type='text' placeholder='First Name' onChange={this.handleFNameChange} />
                             </Form.Group>
-                            <Form.Group className='mb-3' controlId='formBasicText'>
+                            <Form.Group className='mb-3' controlId='formBasicLastName'>
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control type='text' placeholder='Last Name' onChange={this.handleLNameChange} />
                             </Form.Group>
@@ -103,7 +104,7 @@ class Signup extends Component {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type='password' placeholder='Enter password' autoComplete='new-password' onChange={this.handlePasswordChange}/>
                             </Form.Group>
-                            <Form.Group className='mb-3' controlId='formBasicPassword'>
+                            <Form.Group className='mb-3' controlId='formBasicConfirmPassword'>
                                 <Form.Label>Re-Enter Password</Form.Label>
                                 <Form.Control type='password' placeholder='Re-enter password' autoComplete='new-password' onChange={this.handleConPasswordChange}/>
                             </Form.Group>
