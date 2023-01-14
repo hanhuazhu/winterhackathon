@@ -12,19 +12,19 @@ import SearchBar from './Drug-search-bar';
 function Drug() {
     
     const [foundAdverseEvents, setAdverseEvents] = useState({
-        "ade": ["ONE", "TWO", "THREE", "FOUR", "FIVE"], 
-        "amount": [100,200,300,400,500]
+        // "ade": ["ONE", "TWO", "THREE", "FOUR", "FIVE"], 
+        // "amount": [100,200,300,400,500]
     })
     const [foundTest, setTest] = useState({
-        "info": ["ONE"],
-        "problem": ["TWO"]
+        "info": [],
+        "problem": []
     })
 
     useEffect(() => {
         // console.log('foundAdverseEvents within Drug.js', foundAdverseEvents)
     }, [foundAdverseEvents])
     useEffect(() => {
-        // console.log('foundTest within Drug.js', foundTest)
+        //console.log('foundTest within Drug.js', foundTest.problems)
     }, [foundTest])
     
 
@@ -36,10 +36,8 @@ function Drug() {
                 
             </Col>
             <Col>
-                
                 <Row>
-                    <h1>DRUG SEARCHER</h1>
-                    
+                    <h1>DRUG SEARCHER</h1> 
                 </Row>
                 <Row>
                     <SearchBar setAdverseEvents={setAdverseEvents} setTest={setTest} />
