@@ -3,7 +3,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize('postgres://postgres:cBFvRbTsPjfVUUC@myhealthcare.internal:5432/prjdb');
+const sequelize = new Sequelize('postgres://postgres:cBFvRbTsPjfVUUC@myhealthcare.internal:5432');
 
 const PORT = process.env.PORT || 8080;
 
@@ -16,7 +16,7 @@ const connect = async () => {
   }
 }
 
-const userRouter = require('./v1/routes/userRouters.js');
+const userRouter = require('./v1/routes/userRouters');
 
 const app = express();
 
