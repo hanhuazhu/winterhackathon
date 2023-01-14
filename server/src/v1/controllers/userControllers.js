@@ -24,7 +24,7 @@ const getOneUser = async (req, res) => {
 const postOneUser = async (req, res) => {
   try {
     const { username, firstName, lastName } = req.body;
-    const oneUser = createOneUser({username, firstName, lastName});
+    const oneUser = await createOneUser({username, firstName, lastName});
     res.json({
       status: 'OK', 
       data: oneUser,
@@ -41,7 +41,7 @@ const postOneUser = async (req, res) => {
 const deleteOneUser = async (req, res) => {
   try {
     const username = req.params.id;
-    const oneUser = destroyOneUser(username);
+    const oneUser = await destroyOneUser(username);
     res.json({
       status: 'OK', 
       data: oneUser,
