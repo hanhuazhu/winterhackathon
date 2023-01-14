@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Login from './Login';
+import Drug from './Drug';
 import Signup from './Signup';
 import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
@@ -58,10 +59,6 @@ class App extends Component {
             <Route exact path='/' element={<Home />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/RxLookup' element={<Lookup />} />
-            <Route path='/Signup' element={<Signup />} />
-            <Route element={<NavBar />}>
-              <Route path='/UserProfile' element={<User />} /> 
-            </Route>
           </Routes>
         </div>
       </BrowserRouter>
