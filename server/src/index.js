@@ -3,8 +3,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-
-const sequelize = new Sequelize(process.env.POSTGRES_URI);
+const sequelize = new Sequelize('postgres://postgres:cBFvRbTsPjfVUUC@myhealthcare.internal:5432/prjdb');
 
 const PORT = process.env.PORT || 8080;
 
@@ -21,11 +20,12 @@ const userRouter = require('./v1/routes/userRouters.js');
 
 const app = express();
 
+//middleware
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1', userRouter);
 
 app.listen(PORT, () => {
-    console.log(`API is open on port ${8080}`);
+    console.log(`API is open on port ${PORT}`);
 });

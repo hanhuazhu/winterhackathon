@@ -1,8 +1,8 @@
-import { 
-  findOneUser,
-} from "../services/userServices"
+const { 
+  findOneUser, 
+} = require('../services/userServices');
 
-export const getOneUser = async (req, res) => {
+const getOneUser = async (req, res) => {
   try {
     const oneUser = findOneUser();
     res.send({
@@ -17,3 +17,39 @@ export const getOneUser = async (req, res) => {
       });
   }
 };
+
+const postOneUser = async (req, res) => {
+  try {
+    const oneUser = findOneUser();
+    res.send({
+      status: 'OK', 
+      data: oneUser,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ 
+        status: 'FAILED', 
+      });
+  }
+};
+
+const deleteOneUser = async (req, res) => {
+  try {
+    const oneUser = findOneUser();
+    res.send({
+      status: 'OK', 
+      data: oneUser,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ 
+        status: 'FAILED', 
+      });
+  }
+};
+
+module.exports = {
+  getOneUser,
+}
