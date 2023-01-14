@@ -12,7 +12,7 @@ import {
 import {Bar} from "react-chartjs-2";
 import React, {useState,useEffect} from "react";
 
-function BarGraphTest() {
+function BarGraph1() {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -64,4 +64,4 @@ function BarGraphTest() {
 };
 
 
-export default BarGraphTest
+export default BarGraph1

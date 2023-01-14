@@ -12,8 +12,14 @@ import {
 import {Doughnut} from "react-chartjs-2";
 import React, {useState,useEffect} from "react";
 import {Colors} from "chart.js";
+// import {ade, amount} from "./Drug-search-bar";
 
-function PieGraph1() {
+const PieGraph1=({foundAdverseEvents}) => {
+useEffect(() => {
+  console.log("foundAdverseEvents within Pie Chart", foundAdverseEvents);
+}, [foundAdverseEvents])
+foundAdverseEvents !== undefined && console.log('%cfoundAdverEvents', foundAdverseEvents, "color:green")
+// function PieGraph1() {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -41,11 +47,11 @@ function PieGraph1() {
 
   useEffect(() => {
     setChartData({
-      labels: ["side effect 1", "side effect 2", "side effect 3", "side effect 4", "side effect 5"],
+      labels: foundAdverseEvents.ade,
       datasets: [
         {
           label: "Total reported side effects",
-          data: [500,300,100,50,10],
+          data: foundAdverseEvents.amount,
           borderColor: "rgb(53,162, 135",
           backgroundColor: "rgba(53, 162, 235, 0.4)",
           hoverBorderColor: "rgb(235, 64, 52)"
@@ -64,7 +70,7 @@ function PieGraph1() {
         }
       }
     })
-  }, [])
+  }, [foundAdverseEvents])
 
   return (
     <div className="App thumbnail">

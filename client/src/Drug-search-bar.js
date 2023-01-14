@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-const SearchBar = ({keyword, onChange}) => {
+const SearchBar = ({setAdverseEvents, setTest}) => {
   const BarStyle = {width:"20rem",background:"#F0F0F0", border:"none", padding:"0.5rem"};
 
   const [drug, setDrug] = useState('')
@@ -9,7 +9,7 @@ const SearchBar = ({keyword, onChange}) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     getDrugADE(drug)
-    // getInteraction(drug)
+    //getInteraction(drug)
   }
 
   const getDrugADE = (drug)  => {
@@ -19,23 +19,28 @@ const SearchBar = ({keyword, onChange}) => {
         //console.log("data: ", data)
         const amount = [data.results[0].count, data.results[1].count, data.results[2].count, data.results[3].count, data.results[4].count]
         const ade = [data.results[0].term, data.results[1].term, data.results[2].term, data.results[3].term, data.results[4].term]
-        console.log("#", amount)
-        console.log("ade", ade)
+        
         const result = {amount, ade}
-        return result
+        setAdverseEvents({
+          ade,
+          amount
+        })
+        return;
+        // return result
       })
       .catch(err => console.error(err))
   }
 
-  // const getInteraction = (drug)  => {
-  //   return fetch(`https://api.fda.gov/drug/label.json?search=drug_interactions:${drug}&limit=5`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log("data: ", data)
-  //       return data
-  //     })
-  //     .catch(err => console.error(err))
-  // }
+  const getInteraction = (drug)  => {
+    return fetch(`https://api.fda.gov/drug/label.json?search=drug_interactions:${drug}&limit=5`)
+      .then(response => response.json())
+      .then(data => {
+        
+        setTest(data)
+        return data
+      })
+      .catch(err => console.error(err))
+  }
 
   return (
     <div>
@@ -53,7 +58,7 @@ const SearchBar = ({keyword, onChange}) => {
 }
 
 
-console.log("finalamount", SearchBar.getDrugADE("advil"))
+
 // console.log("finalade"), SearchBar.getDrugADE.ade)
 
 
