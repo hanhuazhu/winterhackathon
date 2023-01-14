@@ -2,7 +2,7 @@ const {
   findUserBiometrics,
   createUserBiometrics,
   updateUserBiometrics,
-  // destroyUserBiometrics,
+  destroyUserBiometrics,
 } = require('../services/biometricsServices');
 
 const getUserBiometrics = async (req, res) => {
@@ -15,9 +15,10 @@ const getUserBiometrics = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(500)
+      .status(error?.status || 500)
       .send({
         status: 'FAILED',
+        data: { error: error?.message || error }
       });
   }
 };
@@ -33,11 +34,11 @@ const postUserBiometrics = async (req, res) => {
       data: userBiometrics,
     });
   } catch (error) {
-    console.log(error)
     res
-      .status(500)
+      .status(error?.status || 500)
       .send({
         status: 'FAILED',
+        data: { error: error?.message || error }
       });
   }
 };
@@ -53,33 +54,34 @@ const patchUserBiometrics = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(500)
+      .status(error?.status || 500)
       .send({
         status: 'FAILED',
+        data: { error: error?.message || error }
       });
   }
 }
 
-// const deleteOneUser = async (req, res) => {
-//     try {
-//         const username = req.params.id;
-//         const oneUser = await destroyOneUser(username);
-//         res.json({
-//             status: 'OK',
-//             data: oneUser,
-//         });
-//     } catch (error) {
-//         res
-//             .status(500)
-//             .send({
-//                 status: 'FAILED',
-//             });
-//     }
-// };
+const deleteUserBiometrics = async (req, res) => {
+  try {
+    const username = req.params.id;
+    const userBiometrics = await destroyUserBiometrics(username);
+    res
+      .status(204)
+      .json({ status: 'OK' });    
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });    
+  }
+}
 
 module.exports = {
   getUserBiometrics,
   postUserBiometrics,
   patchUserBiometrics,
-  // deleteUserBiometrics,
+  deleteUserBiometrics,
 }
