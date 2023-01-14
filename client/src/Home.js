@@ -12,13 +12,16 @@ class Home extends Component {
         return (
             <div>
                 <Container className='window m-0 p-0' fluid>
-                    <Row className="row-cols-2">
+                    <Row>
                         <Col className='p-0 ms-2 mt-2'>
                             <img src={logo} alt="My HealthCare Logo" id="logo"></img>
                         </Col>
-                        <Col>
-                            <Button href="/Login" variant='dark-outline'>
+                        <Col className='m-auto'>
+                            <Button href="/Login" variant='outline-dark' size='lg'>
                                 Login
+                            </Button>
+                            <Button href="/Signup" variant='outline-dark' size='lg'>
+                                Signup
                             </Button>
                         </Col>
                     </Row>
