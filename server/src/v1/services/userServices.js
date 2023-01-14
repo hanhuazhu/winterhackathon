@@ -1,26 +1,26 @@
-const { sequelize, User } = require('../../models');
+const { User } = require('../../models');
 
-const findOneUser = async () => {
+const findOneUser = async (username) => {
   try {
-    const oneUser = await User.findOne({ where: { uuid }});
+    const oneUser = await User.findOne({ where: {username: username} });
     return oneUser;
   } catch(error) {
     throw error;
   }
 }
 
-const findOneUser = async () => {
+const createOneUser = async (username, firstName, lastName) => {
   try {
-    const oneUser = await User.findOne({ where: { uuid }});
+    const oneUser = await User.create(username, firstName, lastName);
     return oneUser;
   } catch(error) {
     throw error;
   }
 }
 
-const findOneUser = async () => {
+const destroyOneUser = async (username) => {
   try {
-    const oneUser = await User.findOne({ where: { uuid }});
+    const oneUser = await User.destroy({ where: { username: username }});
     return oneUser;
   } catch(error) {
     throw error;
@@ -29,4 +29,6 @@ const findOneUser = async () => {
 
 module.exports = {
   findOneUser,
+  createOneUser,
+  destroyOneUser,
 }

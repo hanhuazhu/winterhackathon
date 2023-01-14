@@ -1,11 +1,14 @@
 const { 
   findOneUser, 
+  createOneUser, 
+  destroyOneUser,
 } = require('../services/userServices');
 
 const getOneUser = async (req, res) => {
   try {
-    const oneUser = findOneUser();
-    res.send({
+    const username = req.params.id;
+    const oneUser = await findOneUser(username);
+    res.json({
       status: 'OK', 
       data: oneUser,
     });
@@ -20,8 +23,9 @@ const getOneUser = async (req, res) => {
 
 const postOneUser = async (req, res) => {
   try {
-    const oneUser = findOneUser();
-    res.send({
+    const { username, firstName, lastName } = req.body;
+    const oneUser = createOneUser({username, firstName, lastName});
+    res.json({
       status: 'OK', 
       data: oneUser,
     });
@@ -36,8 +40,9 @@ const postOneUser = async (req, res) => {
 
 const deleteOneUser = async (req, res) => {
   try {
-    const oneUser = findOneUser();
-    res.send({
+    const username = req.params.id;
+    const oneUser = destroyOneUser(username);
+    res.json({
       status: 'OK', 
       data: oneUser,
     });
@@ -52,4 +57,6 @@ const deleteOneUser = async (req, res) => {
 
 module.exports = {
   getOneUser,
+  postOneUser,
+  deleteOneUser,
 }
