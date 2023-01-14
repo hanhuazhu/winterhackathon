@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Biometrics.init({
     height: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     weight: {

@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       height: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       weight: {
         type: DataTypes.INTEGER
@@ -49,14 +49,6 @@ module.exports = {
       triglycerides: {
         type: DataTypes.INTEGER
       },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      }
     });
   },
   async down(queryInterface, DataTypes) {

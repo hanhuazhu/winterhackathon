@@ -38,7 +38,7 @@ const postUserBiometrics = async (req, res) => {
             cholesterol_levels,
             triglycerides
         } = req.body;
-        const userBiometrics = await createUserBiometrics({
+        const userBiometrics = await createUserBiometrics(
             username,
             height,
             weight,
@@ -52,7 +52,7 @@ const postUserBiometrics = async (req, res) => {
             current_exercise,
             cholesterol_levels,
             triglycerides
-        });
+        );
         res.json({
             status: 'OK',
             data: userBiometrics,

@@ -1,10 +1,14 @@
-const { User } = require('../../models');
+const { User, Biometrics } = require('../../models');
 
 const findUserBiometrics = async (username) => {
     try {
-        const userBiometrics = await User.findOne({ where: { id }, include: 'biometrics'});
+        const userBiometrics = await User.findOne({
+            where: { username:username },
+            include: 'biometrics'
+        });
         return userBiometrics;
     } catch(error) {
+        console.log(error)
         throw error;
     }
 }
