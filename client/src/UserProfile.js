@@ -7,9 +7,9 @@ import { Card } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 
 
-const Username = () => {
-    const username = useSearchParams().get('username');
-    return username
+function Username() {
+    const [searchparams] = useSearchParams();
+    return searchparams.get('username');
 } 
 
 const username = Username

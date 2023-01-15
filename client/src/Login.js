@@ -18,6 +18,8 @@ class Login extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.verifyPassword = this.verifyPassword.bind(this);
     }
 
     handleUsernameChange = (event) => {
@@ -33,24 +35,28 @@ class Login extends Component {
         this.props.onIsLoggedInChange(true)
     }
 
+    verifyPassword = (data) => {
+        console.log(data.data)
+        console.log(this.state.password)
+        if (data.data == null) {
+            alert('Incorrect username or password');
+            return false
+        } else if (data.data.password != this.state.password) {
+            alert('Incorrect username or password')
+            return false
+        } else {
+            this.props.onIsLoggedInChange(true);
+        }
+
+    }
+
     handleSubmit = (event) => {
         
         event.preventDefault();
         fetch(`http://localhost:3001/api/v1/user/${this.props.username}`)
                 .then((response) => response.json())
                     .then((data) => {
-                        console.log(data);
-                        console.log(this.password);
-                        console.log(data.password);
-                        if (data == null) {
-                            alert('Incorrect username or password');
-                            return false
-                        } else if (data.password != this.password) {
-                            alert('Incorrect username or password')
-                            return false
-                        } else {
-                        }
-
+                        return this.verifyPassword(data);
             })
     }
 
