@@ -10,8 +10,6 @@ import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
 
-/* vv Change to whatever we decide on this route vv */
-import Lookup from './Rxlookup';
 
 function NavBar(props) {
   /* Routes that require the navbar are rendered through here first. Outlet (33) gives it a way to continue on to the correct path. This forces the 
@@ -46,6 +44,7 @@ class App extends Component {
     super(props);
     this.state = {
       isLoggedIn: true,
+      username: null
     }
   }
 
@@ -59,7 +58,8 @@ class App extends Component {
             {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/Drug' element={<Lookup />} />
+            <Route path='/Drug' element={<Drug />} />
+            <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
               <Route path='/UserProfile' element={<User />} />
               <Route path='/Article' element={<Article />} />

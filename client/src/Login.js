@@ -41,7 +41,9 @@ class Login extends Component {
             <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
-                        <img src={logo} alt='My HealthCare Logo' width={300}></img>
+                        <a href='/'>
+                            <img src={logo} alt='My HealthCare Logo' width={300}></img>
+                        </a>
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formUsername'>
                                 <Form.Label>Username</Form.Label>
