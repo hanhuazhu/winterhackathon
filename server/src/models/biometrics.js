@@ -12,10 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ User }) {
       this.belongsTo(User, { foreignKey: 'userId', as:'user' })
     }
+    toJSON() {
+      return {...this.get(), id: undefined, userId: undefined }
+    }
   }
   Biometrics.init({
     height: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     weight: {
       type: DataTypes.INTEGER,
