@@ -16,7 +16,9 @@ function Drug() {
 
     return (
         <Container className=".container-fluid">
-            <img src={logo} alt='My HealthCare Logo' width={200}></img>
+            <a href='/'>
+                <img src={logo} alt='My HealthCare Logo' width={200}></img>
+            </a>
             <Row>
                 <Col className='align-items-center justify-content-center d-flex flex-column h-200'>
                     <div className='w-10'>

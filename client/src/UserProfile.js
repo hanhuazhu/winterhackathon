@@ -23,6 +23,9 @@ function UserProfile() {
         <Container className='box m-0 p-0 mh-100' fluid>
             <Row className='h-100'> 
                 <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
+                    <Button href="/Article" variant='outline-dark' size='lg'>
+                                Recommended Articles
+                    </Button>
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src="holder.js/100px180" />
                         <Card.Body>
@@ -42,7 +45,7 @@ function UserProfile() {
                             <Card.Text>
                                 Biometrics information
                             </Card.Text>
-                            <Button variant="primary">Go somewhere</Button>
+                            <Button href='/Biometrics' variant="primary">Go somewhere</Button>
                         </Card.Body>
                     </Card>
                 </Col>
