@@ -17,6 +17,6 @@ authRouter.post('/login', loginUser);
 
 authRouter.delete('/logout', logoutUser);
 
-authRouter.get('/', getOurUser, authMiddleware)
+authRouter.get('/:id', getOurUser, authMiddleware)
 
 module.exports = authRouter;
