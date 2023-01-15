@@ -9,6 +9,7 @@ import Signup from './Signup';
 import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
+import UserProfile from './UserProfile';
 
 /* vv Change to whatever we decide on this route vv */
 import Lookup from './Rxlookup';
@@ -62,6 +63,7 @@ class App extends Component {
             <Route path='/RxLookup' element={<Lookup />} />
             <Route path='/Drug' element={<Drug />} />
             <Route path='/Biometrics' element={<Biometrics />} />
+            <Route path='/UserProfile' element={<UserProfile />} />
           </Routes>
         </div>
       </BrowserRouter>
