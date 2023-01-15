@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       height: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       weight: {
         type: DataTypes.INTEGER

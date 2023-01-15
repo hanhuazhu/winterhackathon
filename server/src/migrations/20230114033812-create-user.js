@@ -22,6 +22,10 @@ module.exports = {
         unique: true,
         allowNull:false
       },
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
+      },
       password: {
         type: DataTypes.STRING,
         allowNull:false
