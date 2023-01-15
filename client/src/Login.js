@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import logo from './logo_2.svg';
 import { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Navigate, createSearchParams, useSearchParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -62,12 +62,13 @@ class Login extends Component {
 
     render() {
         const username = this.props.username
+        const userURL = `/UserProfile/${username}`
         return (
             <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
                         {this.props.isLoggedIn && (
-                            <Navigate to="/UserProfile" search={createSearchParams({username: username})} replace={true} />
+                            <Navigate to={userURL} replace={true} />
                         )}
                         <a href='/'>
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>

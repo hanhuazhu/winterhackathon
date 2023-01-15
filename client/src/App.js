@@ -73,7 +73,7 @@ class App extends Component {
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
               <Route path='/Biometrics' element={<Biometrics />} />
-              <Route path='/UserProfile' element={<User username={username}/>} />
+              <Route path='/UserProfile/:username'  element={<User username={username}/>} />
               <Route path='/Article' element={<Article />} />
             </Route>          </Routes>
         </div>

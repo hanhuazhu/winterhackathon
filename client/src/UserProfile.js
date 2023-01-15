@@ -4,15 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Component } from 'react';
 import { Card } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
-function Username() {
-    const [searchparams] = useSearchParams();
-    return searchparams.get('username');
-} 
-
-const username = Username
 
 class User extends Component {
     constructor(props) {
@@ -23,13 +17,13 @@ class User extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3001/api/v1/user/${username}`)
+        console.log(this.props.username)
+        fetch(`http://localhost:3001/api/v1/user/tuser`)
             .then((response) => response.json())
             .then((data) => {
                 this.setState({user: data});
             })
-
-    }
+        }
 
     
     componentWillUnmount() {
@@ -43,6 +37,7 @@ class User extends Component {
                 <Container className='window m-0 p-0' fluid>
                     <Row>
                         <Col>
+                            <h1></h1>
                         </Col>
                     </Row>
                 </Container>
