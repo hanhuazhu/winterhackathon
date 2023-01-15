@@ -34,12 +34,17 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {msg: 'Last name must not be empty'}
       }
     },
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {msg: 'Must have a username'},
-        notEmpty: {msg: 'Username must not be empty'}
+        notEmpty: {msg: 'Username must not be empty'},
+        unique: true
       }
     },
     password: {
@@ -47,7 +52,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate: {
         notNull: {msg: 'Must have a password'},
-        notEmpty: {msg: 'Password must not be empty'}
+        notEmpty: {msg: 'Password must not be empty'},
+        min: 6
       }
     }
   }, {
