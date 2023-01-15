@@ -16,7 +16,7 @@ function Drug() {
 
     return (
         <Container className=".container-fluid">
-            <img src={logo} alt='My HealthCare Logo' width={300}></img>
+            <img src={logo} alt='My HealthCare Logo' width={200}></img>
             <Row>
                 <Col className='align-items-center justify-content-center d-flex flex-column h-200'>
                     <div className='w-10'>
@@ -32,7 +32,7 @@ function Drug() {
                     <PieGraph1 foundAdverseEvents={foundAdverseEvents} />
                 </Col>
             </Row>
-            <Row>
+            <Row className='information'>
                 <Col>
                     {foundTest.info}
                 </Col>
