@@ -5,6 +5,7 @@ import Home from './Home';
 import Login from './Login';
 import Drug from './Drug';
 import Signup from './Signup';
+import Article from './Article';
 import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
@@ -58,7 +59,12 @@ class App extends Component {
             {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/RxLookup' element={<Lookup />} />
+            <Route path='/Drug' element={<Lookup />} />
+            <Route element={<NavBar />}>
+              <Route path='/UserProfile' element={<User />} />
+              <Route path='/Article' element={<Article />} />
+            </Route>
+
           </Routes>
         </div>
       </BrowserRouter>
