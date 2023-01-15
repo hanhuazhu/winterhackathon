@@ -210,38 +210,6 @@ Returns something like:
 </br>
 
 
-
-#### We have an updated login validation endpoint in one of our branches not yet pushed to main:
-
-#### POST https://healthtracerapi.onrender.com/api/v1/user/login
-
-
-This is a POST request and NOT a get. Requires JSON body with format:
-{
-"username":""
-"password:""
-}
-
-
-The username and password are what a registered user will input on the login screen.
-If the username and password match those stored in the database, it will return the user profile in JSON:
-```
-{
-"firstName":"",
-"lastName":"",
-"uuid":"",
-"username":"",
-"password":"",
-"createdAt":"",
-"updatedAt":""
-}
-```
-It basically does what the normal GET user request does except it avoids exposing the password in a GET query param. Instead, you pass the username and password from login into the POST body as a JSON for the server to authenticate and then return the user profile. If either the password or username are wrong or they don't exist, you will get a JSON string response "Invalid username or password!"
-
-
-</br>
-
-
 ## Public APIs used in the frontend:
 
 </br>
