@@ -121,7 +121,11 @@ class Biometrics extends Component {
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formPassword'>
                                 <Form.Label>Exercise History</Form.Label>
-                                <Form.Control type='text' placeholder='Enter exercise history' autoComplete='exercise history' onChange={this.handleExerciseHistoryChange}/>
+                                <Form.Control as="select" type='text' placeholder='Enter exercise history' autoComplete='exercise history' onChange={this.handleExerciseHistoryChange}>
+                                    <option>Select history type</option>
+                                    <option>athletic</option>
+                                    <option>non-athletic</option>
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formUsername'>
                                 <Form.Label>Smoking</Form.Label>
@@ -129,7 +133,11 @@ class Biometrics extends Component {
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formUsername'>
                                 <Form.Label>Current Exercise</Form.Label>
-                                <Form.Control type='text' placeholder='Enter current exercise' autoComplete='current exercise' onChange={this.handleCurrentExerciseChange}/>
+                                <Form.Control as="select" type='text' placeholder='Enter current exercise' autoComplete='current exercise' onChange={this.handleCurrentExerciseChange}>
+                                    <option>Select current level</option>
+                                    <option>active</option>
+                                    <option>non-active</option>
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formPassword'>
                                 <Form.Label>Cholesterol Levels</Form.Label>
