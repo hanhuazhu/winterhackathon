@@ -1,91 +1,87 @@
 const {
-    findUserBiometrics,
-    createUserBiometrics,
-    // destroyUserBiometrics,
+  findUserBiometrics,
+  createUserBiometrics,
+  updateUserBiometrics,
+  destroyUserBiometrics,
 } = require('../services/biometricsServices');
 
 const getUserBiometrics = async (req, res) => {
-    try {
-        const { username } = req.body;
-        const userBiometrics = await findUserBiometrics(username);
-        res.json({
-            status: 'OK',
-            data: userBiometrics,
-        });
-    } catch (error) {
-        res
-            .status(500)
-            .send({
-                status: 'FAILED',
-            });
-    }
+  try {
+    const username = req.params.id;
+    const userBiometrics = await findUserBiometrics(username);
+    res.json({
+      status: 'OK',
+      data: userBiometrics,
+    });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
+  }
 };
 
+// Parses username key from request body
+// Other option is to locate parent User through url id parameters
 const postUserBiometrics = async (req, res) => {
-    try {
-        const {
-            username,
-            height,
-            weight,
-            age,
-            bmi,
-            blood_pressure,
-            pulse,
-            fbg,
-            exercise_history,
-            smoking,
-            current_exercise,
-            cholesterol_levels,
-            triglycerides
-        } = req.body;
-        const userBiometrics = await createUserBiometrics({
-            username,
-            height,
-            weight,
-            age,
-            bmi,
-            blood_pressure,
-            pulse,
-            fbg,
-            exercise_history,
-            smoking,
-            current_exercise,
-            cholesterol_levels,
-            triglycerides
-        });
-        res.json({
-            status: 'OK',
-            data: userBiometrics,
-        });
-    } catch (error) {
-        console.log(error)
-        res
-            .status(500)
-            .send({
-                status: 'FAILED',
-            });
-    }
+  try {
+    const username = req.body.username;
+    const userBiometrics = await createUserBiometrics(username);
+    res.json({
+      status: 'OK',
+      data: userBiometrics,
+    });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
+  }
 };
 
-// const deleteOneUser = async (req, res) => {
-//     try {
-//         const username = req.params.id;
-//         const oneUser = await destroyOneUser(username);
-//         res.json({
-//             status: 'OK',
-//             data: oneUser,
-//         });
-//     } catch (error) {
-//         res
-//             .status(500)
-//             .send({
-//                 status: 'FAILED',
-//             });
-//     }
-// };
+const patchUserBiometrics = async (req, res) => {
+  try {
+    const username = req.params.id;
+    const changes = req.body;
+    const userBiometrics = await updateUserBiometrics(username, changes);
+    res.json({
+      status: 'OK',
+      data: userBiometrics,
+    });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
+  }
+}
+
+const deleteUserBiometrics = async (req, res) => {
+  try {
+    const username = req.params.id;
+    const userBiometrics = await destroyUserBiometrics(username);
+    res
+      .status(204)
+      .json({ status: 'OK' });    
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });    
+  }
+}
 
 module.exports = {
-    getUserBiometrics,
-    postUserBiometrics,
-    // deleteUserBiometrics,
+  getUserBiometrics,
+  postUserBiometrics,
+  patchUserBiometrics,
+  deleteUserBiometrics,
 }

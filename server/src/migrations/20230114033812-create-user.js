@@ -19,7 +19,12 @@ module.exports = {
       },
       username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull:false
+      },
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
       password: {
         type: DataTypes.STRING,

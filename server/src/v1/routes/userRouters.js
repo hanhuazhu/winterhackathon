@@ -1,9 +1,10 @@
 const express = require('express');
-const {
-  getOneUser,
+const { 
+  getOneUser, 
   postOneUser,
-  deleteOneUser,
+  deleteOneUser, 
 } = require('../controllers/userControllers');
+
 const userRouter = express.Router();
 
 userRouter.get('/:id', getOneUser);

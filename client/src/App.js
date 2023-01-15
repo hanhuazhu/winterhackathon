@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import Login from './Login';
 import Drug from './Drug';
+import Biometrics from './Biometrics';
 import Signup from './Signup';
 import Article from './Article';
 import User from './UserProfile';
@@ -71,11 +72,10 @@ class App extends Component {
             <Route path='/Drug' element={<Drug />} />
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
+              <Route path='/Biometrics' element={<Biometrics />} />
               <Route path='/UserProfile' element={<User />} />
               <Route path='/Article' element={<Article />} />
-            </Route>
-
-          </Routes>
+            </Route>          </Routes>
         </div>
       </BrowserRouter>
     )    

@@ -14,10 +14,11 @@ const getOneUser = async (req, res) => {
     });
   } catch (error) {
     res
-        .status(500)
-        .send({
-          status: 'FAILED',
-        });
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
   }
 };
 
@@ -30,12 +31,12 @@ const postOneUser = async (req, res) => {
       data: oneUser,
     });
   } catch (error) {
-    console.log(error)
     res
-        .status(500)
-        .send({
-          status: 'FAILED',
-        });
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
   }
 };
 
@@ -43,16 +44,16 @@ const deleteOneUser = async (req, res) => {
   try {
     const username = req.params.id;
     const oneUser = await destroyOneUser(username);
-    res.json({
-      status: 'OK',
-      data: oneUser,
-    });
+    res
+      .status(204)
+      .json({status: 'OK'});
   } catch (error) {
     res
-        .status(500)
-        .send({
-          status: 'FAILED',
-        });
+      .status(error?.status || 500)
+      .send({
+        status: 'FAILED',
+        data: { error: error?.message || error }
+      });
   }
 };
 

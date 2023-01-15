@@ -34,6 +34,9 @@ class Home extends Component {
                                 <Button href='/Drug' variant='outline-dark' size='lg'>
                                     Rx Lookup
                                 </Button>
+                                <Button href='/Drug' variant='outline-dark' size='lg'>
+                                    Drug Information
+                                </Button>
                             </div>
                         </Col>
                         <Col>

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5432;
 
 const connect = async () => {
   try {
@@ -19,7 +19,7 @@ const biometricsRouter = require('./v1/routes/biometricsRouters');
 const app = express();
 
 const test = async () => {
-  await sequelize.sync({ force: true });
+  
 }
 
 //test();
@@ -33,4 +33,5 @@ app.use('/api/v1/biometrics', biometricsRouter);
 
 app.listen(PORT, async() => {
   console.log(`API is open on port ${PORT}`);
+  await sequelize.sync({ force: true });
 });
