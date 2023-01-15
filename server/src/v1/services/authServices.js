@@ -1,24 +1,7 @@
 const { User, Token } = require('../../models');
 const bcrypt = require('bcrypt');
 const { generateAuthToken } = require('../../utils/token.js');
-const { modules } = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
-
-const createUserSession = async (username, password) => {
-  try {
-    const oneUser = await User.findOne({ where: {username: username} });
-    if(oneUser.username === username && oneUser.password === password) {
-      const token = await Token.create({ UserId: oneUser.id });
-      await oneUser.addToken(token);
-      const authToken = generateAuthToken({uuid: token.uuid});
-      return {oneUser, authToken};
-    } else {
-      return "Invalid username or password!"
-    }
-  } catch(error) {
-      throw error;
-  }
-}
 
 const createNewUser = async (body) => {
   try {
@@ -32,6 +15,23 @@ const createNewUser = async (body) => {
     return {oneUser, authToken};
   } catch(error) {
     throw error;
+  }
+}
+
+const createUserSession = async (username, password) => {
+  try {
+    const oneUser = await User.findOne({ where: {username: username} });
+    console.log('Dog',oneUser)
+    if(oneUser.username === username && bcrypt.compareSync(password, oneUser.password)) {
+      const token = await Token.create({ UserId: oneUser.id });
+      await oneUser.addToken(token);
+      const authToken = generateAuthToken({uuid: token.uuid});
+      return {oneUser, authToken};
+    } else {
+      return "Invalid username or password!"
+    }
+  } catch(error) {
+      throw error;
   }
 }
 

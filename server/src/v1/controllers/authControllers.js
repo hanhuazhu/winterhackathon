@@ -10,7 +10,8 @@ const registerUser = async (req, res) => {
     const userSession = await createNewUser(body);
     res.json({
       status: 'OK',
-      data: userSession,
+      data: userSession.oneUser,
+      authToken: userSession.authToken,
     });
   } catch (error) {
     res
@@ -25,10 +26,11 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const oneUser = await createUserSession(username, password);
+    const userSession = await createUserSession(username, password);
     res.json({
       status: 'OK',
-      data: oneUser,
+      data: userSession.oneUser,
+      authToken: userSession.authToken,
     });
   } catch(error) {
     res
