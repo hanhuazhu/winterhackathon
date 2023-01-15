@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import Login from './Login';
 import Drug from './Drug';
+import Biometrics from './Biometrics';
 import Signup from './Signup';
 import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
@@ -60,6 +61,7 @@ class App extends Component {
             <Route path='/Login' element={<Login />} />
             <Route path='/RxLookup' element={<Lookup />} />
             <Route path='/Drug' element={<Drug />} />
+            <Route path='/Biometrics' element={<Biometrics />} />
           </Routes>
         </div>
       </BrowserRouter>
