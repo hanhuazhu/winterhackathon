@@ -5,6 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
 function UserProfile() {
 
@@ -16,7 +19,6 @@ function UserProfile() {
             .then((response) => response.json())
                 .then((data) => setdata(data)); }, [params]);
 
-        const info = userdata.data;
     return (
         <Container className='box m-0 p-0 mh-100' fluid>
             <Row className='h-100'> 
@@ -24,7 +26,7 @@ function UserProfile() {
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src="holder.js/100px180" />
                         <Card.Body>
-                            <Card.Title>User Profile Card</Card.Title>
+                            <Card.Title>First Name</Card.Title>
                             <Card.Text>
                                 Information about the Profile of the User
                             </Card.Text>
