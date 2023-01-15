@@ -25,7 +25,7 @@ function NavBar(props) {
                     <img src={logo} alt='My HealthCare Logo' style={{width: 150, height: 75}}></img>
                   </a>
                     <Nav className='d-flex flex-column col-2 bg-dark text-center w-100 mh-100 gap-4'>
-                      <Nav.Link href='/RxLookup' id='navlink' className='text-info fw-bolder my-5 fs-3'>Rx Lookup</Nav.Link>
+                      <Nav.Link href='/Drug' id='navlink' className='text-info fw-bolder my-5 fs-3'>Drug Information</Nav.Link>
                       <Nav.Link href='#' id='navlink-white' className='text-white fw-bolder mt-5 fs-3'>Logout</Nav.Link>
                     </Nav>
               </Navbar>
@@ -73,7 +73,7 @@ class App extends Component {
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
               <Route path='/Biometrics' element={<Biometrics />} />
-              <Route path='/UserProfile' element={<User />} />
+              <Route path='/UserProfile' element={<User username={username}/>} />
               <Route path='/Article' element={<Article />} />
             </Route>          </Routes>
         </div>

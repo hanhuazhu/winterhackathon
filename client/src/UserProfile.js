@@ -4,8 +4,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Component } from 'react';
 import { Card } from 'react-bootstrap';
-import { useLocation } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 
+
+const Username = () => {
+    const username = useSearchParams().get('username');
+    return username
+} 
+
+const username = Username
 
 class User extends Component {
     constructor(props) {
@@ -16,18 +23,18 @@ class User extends Component {
     }
 
     componentDidMount() {
+        fetch(`http://localhost:3001/api/v1/user/${username}`)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({user: data});
+            })
 
-        fetch(`http://localhost:3001/api/v1/user/${this.props.username}`)
-        .then((response) => response.json())
-        .then((data) => {
-            this.setState({user: data})
-        })
     }
-    
-      componentWillUnmount() {
-        
-      }
 
+    
+    componentWillUnmount() {
+        
+    }
 
     render() {
         
@@ -36,14 +43,6 @@ class User extends Component {
                 <Container className='window m-0 p-0' fluid>
                     <Row>
                         <Col>
-                            <Card>
-                                <Card.Header>
-                                    <h1>{this.state.user}</h1>
-                                </Card.Header>
-                                <Card.Body>
-
-                                </Card.Body>
-                            </Card>
                         </Col>
                     </Row>
                 </Container>

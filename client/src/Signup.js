@@ -17,7 +17,7 @@ class Signup extends Component {
             username: '',
             password: '',
             confirmPassword: '',
-            user: null
+            currentUser: null
         }
         
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -71,7 +71,7 @@ class Signup extends Component {
                 })
                 .then(() => {
                     let user = this.state.username;
-                    this.setState({user: user});
+                    this.setState({currentUser: user});
                 }
                 )
             }
@@ -86,8 +86,8 @@ class Signup extends Component {
                         <a href='/'>
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>
                         </a>
-                        {this.state.user && (
-                            <Navigate to="/UserProfile" replace={true} state={{username: this.state.username}} />
+                        {this.state.currentUser && (
+                            <Navigate to="/UserProfile" replace={true} />
                         )}
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formBasicFirstName'>

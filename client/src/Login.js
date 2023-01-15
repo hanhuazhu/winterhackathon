@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import logo from './logo_2.svg';
 import { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Navigate, createSearchParams, useSearchParams } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -39,7 +39,9 @@ class Login extends Component {
         fetch(`http://localhost:3001/api/v1/user/${this.props.username}`)
                 .then((response) => response.json())
                     .then((data) => {
-                        console.log(data)
+                        console.log(data);
+                        console.log(this.password);
+                        console.log(data.password);
                         if (data == null) {
                             alert('Incorrect username or password');
                             return false
@@ -47,7 +49,6 @@ class Login extends Component {
                             alert('Incorrect username or password')
                             return false
                         } else {
-                            this.handleLogin(event);
                         }
 
             })
@@ -60,7 +61,7 @@ class Login extends Component {
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
                         {this.props.isLoggedIn && (
-                            <Navigate to="/UserProfile" replace={true} state={{username: this.state.username}} />
+                            <Navigate to="/UserProfile" search={createSearchParams({username: username})} replace={true} />
                         )}
                         <a href='/'>
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>
