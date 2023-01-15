@@ -15,7 +15,7 @@ function UserProfile() {
 
         const params = useParams()
         console.log(params)
-        useEffect(() => {fetch(`http://healthtracerapi.onrender.com/api/v1/user/${params.username}`)
+        useEffect(() => {fetch(`https://healthtracerapi.onrender.com/api/v1/user/${params.username}`)
             .then((response) => response.json())
                 .then((data) => setdata(data)); }, [params]);
 
