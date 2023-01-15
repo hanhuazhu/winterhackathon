@@ -2,6 +2,7 @@ const {
   createNewUser,
   createUserSession,
   deleteUserSession,
+  findUserSession,
 } = require('../services/authServices');
 
 const registerUser = async (req, res) => {
@@ -64,7 +65,7 @@ const logoutUser = async (req, res) => {
 const getOurUser = async (req, res) => {
   try {
     const username = req.params.id;
-    const oneUser = await findOneUser(username);
+    const oneUser = await findUserSession(username);
     res.json({
       status: 'OK',
       data: oneUser,
