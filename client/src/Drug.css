@@ -1,0 +1,21 @@
+body {
+  background-size: cover;
+  background-image: url('drug-background.jpg');
+  height: 100vh;
+}
+
+#logo {
+  height: 100px;
+  width: 200px;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.left-column .section-1 .left-column .section-2 {
+  flex: 1;
+}
+.button {
+  margin-left: 20px;
+}
