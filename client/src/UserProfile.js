@@ -2,15 +2,13 @@ import './UserProfile.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Component } from 'react';
-import { Card } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import React from 'react';
 
+function UserProfile() {
 
-function User() {
-
-        const [userdata, setdata] = useState();
+    const [userdata, setdata] = useState();
 
         const params = useParams()
         console.log(params)
@@ -19,18 +17,36 @@ function User() {
                 .then((data) => setdata(data)); }, [params]);
 
         const info = userdata.data;
-            return (
-                <Container className='window m-0 p-0' fluid>
-                    <Row>
-                        <Col>
-                            <h1>{info.username}</h1>
-                        </Col>
-                    </Row>
-                </Container>
-            )
-        
-        }
-    
+    return (
+        <Container className='box m-0 p-0 mh-100' fluid>
+            <Row className='h-100'> 
+                <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Body>
+                            <Card.Title>User Profile Card</Card.Title>
+                            <Card.Text>
+                                Information about the Profile of the User
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Body>
+                            <Card.Title>Biometrics Card</Card.Title>
+                            <Card.Text>
+                                Biometrics information
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
+    )
+}
 
-
-export default User
+export default UserProfile

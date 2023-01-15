@@ -7,9 +7,9 @@ import Drug from './Drug';
 import Biometrics from './Biometrics';
 import Signup from './Signup';
 import Article from './Article';
-import User from './UserProfile';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
+import UserProfile from './UserProfile';
 
 
 function NavBar(props) {
@@ -73,9 +73,10 @@ class App extends Component {
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
               <Route path='/Biometrics' element={<Biometrics />} />
-              <Route path='/UserProfile/:username'  element={<User username={username}/>} />
+              <Route path='/UserProfile/:username'  element={<UserProfile username={username}/>} />
               <Route path='/Article' element={<Article />} />
-            </Route>          </Routes>
+            </Route>  
+          </Routes>
         </div>
       </BrowserRouter>
     )    
