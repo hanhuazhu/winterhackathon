@@ -43,7 +43,7 @@ class Login extends Component {
         }
 
         event.preventDefault();
-        fetch('http://localhost:3001/api/v1/user/login/', {
+        fetch('http://healthtracerapi.onrender.com/api/v1/user/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
