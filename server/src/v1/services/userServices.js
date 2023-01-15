@@ -9,6 +9,19 @@ const findOneUser = async (username) => {
   }
 }
 
+const authenticateOneUser = async (username, password) => {
+  try {
+    const oneUser = await User.findOne({ where: {username: username} });
+    if(oneUser.username === username && oneUser.password === password) {
+      return oneUser;
+    } else {
+      return "Invalid username or password!"
+    }
+  } catch(error) {
+      throw error;
+  }
+}
+
 const createOneUser = async (username, password, firstName, lastName) => {
   try {
     const oneUser = await User.create(username, password, firstName, lastName);
@@ -31,4 +44,5 @@ module.exports = {
   findOneUser,
   createOneUser,
   destroyOneUser,
+  authenticateOneUser
 }
