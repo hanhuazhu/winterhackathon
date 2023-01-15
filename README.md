@@ -2,9 +2,9 @@
 Navigate to /server directory, then enter: npm run serve
 
 # Endpoints 
-/api/v1/user/
-/api/v1/biometrics/
+https://healthtracerapi.onrender.com/api/v1/user/
+https://healthtracerapi.onrender.com/api/v1/biometrics/
 
 # Endpoints that require :id parameters
-GET /api/v1/biometrics/"username"
-
+GET https://healthtracerapi.onrender.com/api/v1/user/"username"
+GET https://healthtracerapi.onrender.com/api/v1/biometrics/"username"
