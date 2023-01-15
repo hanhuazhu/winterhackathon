@@ -3,8 +3,7 @@ const {
     getUserBiometrics,
     postUserBiometrics,
     patchUserBiometrics,
-    // deleteUserBiometrics,
-    // updateUserBiometrics,
+    deleteUserBiometrics,
 } = require('../controllers/biometricsControllers');
 const biometricsRouter = express.Router();
 
@@ -14,8 +13,6 @@ biometricsRouter.post('/', postUserBiometrics);
 
 biometricsRouter.patch('/:id', patchUserBiometrics);
 
-// biometricsRouter.delete('/:id', deleteUserBiometrics);
-//
-// biometricsRouter.put('/:id', updateUserBiometrics);
+biometricsRouter.delete('/:id', deleteUserBiometrics);
 
 module.exports = biometricsRouter;
