@@ -5,14 +5,13 @@ import Col from 'react-bootstrap/Col';
 import logo from './logo_2.svg';
 import { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-
+import { Navigate } from 'react-router-dom';
 
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
             password: '',
         }
         
@@ -22,32 +21,54 @@ class Login extends Component {
     }
 
     handleUsernameChange = (event) => {
-        this.setState({username: event.target.value})
+        this.props.onUsernameChange(event.target.value)
+
     }
 
     handlePasswordChange = (event) => {
         this.setState({password: event.target.value})
     }
 
+    handleLogin = () => {
+        this.props.onIsLoggedInChange(true)
+    }
 
     handleSubmit = (event) => {
         
         event.preventDefault();
-        {/* fetch */}
+        fetch(`http://localhost:3001/api/v1/user/${this.props.username}`)
+                .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data)
+                        if (data == null) {
+                            alert('Incorrect username or password');
+                            return false
+                        } else if (data.password != this.password) {
+                            alert('Incorrect username or password')
+                            return false
+                        } else {
+                            this.handleLogin(event);
+                        }
+
+            })
     }
 
     render() {
+        const username = this.props.username
         return (
             <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
+                        {this.props.isLoggedIn && (
+                            <Navigate to="/UserProfile" replace={true} state={{username: this.state.username}} />
+                        )}
                         <a href='/'>
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>
                         </a>
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formUsername'>
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type='text' placeholder='Enter username' autoComplete='username' onChange={this.handleUsernameChange}/>
+                                <Form.Control type='text' placeholder='Enter username' autoComplete='username' value={username} onChange={this.handleUsernameChange}/>
                             </Form.Group>
                             <Form.Group className='mb-3' controlId='formPassword'>
                                 <Form.Label>Password</Form.Label>

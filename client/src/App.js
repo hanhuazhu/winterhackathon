@@ -43,13 +43,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: true,
-      username: null
+      isLoggedIn: false,
+      username: ''
     }
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
   }
 
+  handleUserChange(username) {
+    this.setState({username: username})
+  }
 
+  handleLoginChange(loggedIn) {
+    this.setState({isLoggedIn: loggedIn})
+  }
   render() {
+    const username = this.state.username
+    const isLoggedIn = this.state.isLoggedIn
     return (
       <BrowserRouter>
       {/* BrowserRouter catches the request from the browser and re-renders the page without requesting a new DOM */}
@@ -57,7 +67,7 @@ class App extends Component {
           <Routes>
             {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
-            <Route path='/Login' element={<Login />} />
+            <Route path='/Login' element={<Login username={username} isLoggedIn={isLoggedIn} onIsLoggedInChange={this.handleLoginChange} onUsernameChange={this.handleUserChange} />} />
             <Route path='/Drug' element={<Drug />} />
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
