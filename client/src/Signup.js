@@ -61,7 +61,7 @@ class Signup extends Component {
                 return false;
             } else {
                 const data = this.state;
-                fetch('http://healthtracerapi.onrender.com/api/v1/user',
+                fetch('https://healthtracerapi.onrender.com/api/v1/user',
                 {
                     method: 'POST',
                     headers: {
