@@ -31,8 +31,8 @@ class Home extends Component {
                                 <h1>Welcome to your health.</h1> <br />
                                 <h4>Track your history, lifestyle, and symptoms to recieve curated wellness tips and 
                                     reminders to stay on top of your health.</h4><br /><br />
-                                <Button href='/Rxlookup' variant='outline-dark' size='lg'>
-                                    Rx Lookup
+                                <Button href='/Drug' variant='outline-dark' size='lg'>
+                                    Drug Information
                                 </Button>
                             </div>
                         </Col>

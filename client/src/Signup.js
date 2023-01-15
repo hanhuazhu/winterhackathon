@@ -17,7 +17,7 @@ class Signup extends Component {
             username: '',
             password: '',
             confirmPassword: '',
-            user: null
+            currentUser: null
         }
         
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -71,7 +71,7 @@ class Signup extends Component {
                 })
                 .then(() => {
                     let user = this.state.username;
-                    this.setState({user: user});
+                    this.setState({currentUser: user});
                 }
                 )
             }
@@ -79,13 +79,17 @@ class Signup extends Component {
     }
 
     render() {
+  
         return (
+            
             <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
-                        <img src={logo} alt='My HealthCare Logo' width={300}></img>
-                        {this.state.user && (
-                            <Navigate to="/UserProfile" replace={true} />
+                        <a href='/'>
+                            <img src={logo} alt='My HealthCare Logo' width={300}></img>
+                        </a>
+                        {this.state.currentUser && (
+                            <Navigate to='/Login' replace={true} />
                         )}
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formBasicFirstName'>

@@ -4,13 +4,13 @@ import './App.css';
 import Home from './Home';
 import Login from './Login';
 import Drug from './Drug';
+import Biometrics from './Biometrics';
 import Signup from './Signup';
-import User from './UserProfile';
+import Article from './Article';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
+import UserProfile from './UserProfile';
 
-/* vv Change to whatever we decide on this route vv */
-import Lookup from './Rxlookup';
 
 function NavBar(props) {
   /* Routes that require the navbar are rendered through here first. Outlet (33) gives it a way to continue on to the correct path. This forces the 
@@ -25,7 +25,7 @@ function NavBar(props) {
                     <img src={logo} alt='My HealthCare Logo' style={{width: 150, height: 75}}></img>
                   </a>
                     <Nav className='d-flex flex-column col-2 bg-dark text-center w-100 mh-100 gap-4'>
-                      <Nav.Link href='/RxLookup' id='navlink' className='text-info fw-bolder my-5 fs-3'>Rx Lookup</Nav.Link>
+                      <Nav.Link href='/Drug' id='navlink' className='text-info fw-bolder my-5 fs-3'>Drug Information</Nav.Link>
                       <Nav.Link href='#' id='navlink-white' className='text-white fw-bolder mt-5 fs-3'>Logout</Nav.Link>
                     </Nav>
               </Navbar>
@@ -44,12 +44,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
+      username: ''
     }
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
   }
 
+  handleUserChange(username) {
+    this.setState({username: username})
+  }
 
+  handleLoginChange(loggedIn) {
+    this.setState({isLoggedIn: loggedIn})
+  }
   render() {
+    const username = this.state.username
+    const isLoggedIn = this.state.isLoggedIn
     return (
       <BrowserRouter>
       {/* BrowserRouter catches the request from the browser and re-renders the page without requesting a new DOM */}
@@ -57,8 +68,14 @@ class App extends Component {
           <Routes>
             {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
-            <Route path='/Login' element={<Login />} />
-            <Route path='/RxLookup' element={<Lookup />} />
+            <Route path='/Login' element={<Login username={username} isLoggedIn={isLoggedIn} onIsLoggedInChange={this.handleLoginChange} onUsernameChange={this.handleUserChange} />} />
+            <Route path='/Drug' element={<Drug />} />
+            <Route path='/Signup' element={<Signup />} />
+            <Route element={<NavBar />}>
+              <Route path='/Biometrics' element={<Biometrics />} />
+              <Route path='/UserProfile/:username'  element={<UserProfile username={username}/>} />
+              <Route path='/Article' element={<Article />} />
+            </Route>  
           </Routes>
         </div>
       </BrowserRouter>
