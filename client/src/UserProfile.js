@@ -4,46 +4,33 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Component } from 'react';
 import { Card } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
+function User() {
 
-class User extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: null
-        }
-    }
+        const [userdata, setdata] = useState();
 
-    componentDidMount() {
-        console.log(this.props.username)
-        fetch(`http://localhost:3001/api/v1/user/tuser`)
+        const params = useParams()
+        console.log(params)
+        useEffect(() => {fetch(`http://localhost:3001/api/v1/user/${params.username}`)
             .then((response) => response.json())
-            .then((data) => {
-                this.setState({user: data});
-            })
-        }
+                .then((data) => setdata(data)); }, [params]);
 
-    
-    componentWillUnmount() {
-        
-    }
-
-    render() {
-        
-
+        const info = userdata.data;
             return (
                 <Container className='window m-0 p-0' fluid>
                     <Row>
                         <Col>
-                            <h1></h1>
+                            <h1>{info.username}</h1>
                         </Col>
                     </Row>
                 </Container>
             )
         
-    }
-}
+        }
+    
+
 
 export default User

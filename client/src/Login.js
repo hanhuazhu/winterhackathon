@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import logo from './logo_2.svg';
 import { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Navigate, createSearchParams, useSearchParams } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -68,7 +68,7 @@ class Login extends Component {
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
                         {this.props.isLoggedIn && (
-                            <Navigate to={userURL} replace={true} />
+                            <Navigate to={userURL} search={createSearchParams({username: username})} replace={true} />
                         )}
                         <a href='/'>
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>

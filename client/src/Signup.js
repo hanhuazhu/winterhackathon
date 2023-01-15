@@ -79,7 +79,9 @@ class Signup extends Component {
     }
 
     render() {
+  
         return (
+            
             <Container className='box m-0 p-0 mh-100' fluid>
                 <Row className='h-100'> 
                     <Col className='text-center align-items-center justify-content-center d-flex flex-column h-100'>
@@ -87,7 +89,7 @@ class Signup extends Component {
                             <img src={logo} alt='My HealthCare Logo' width={300}></img>
                         </a>
                         {this.state.currentUser && (
-                            <Navigate to="/UserProfile" replace={true} />
+                            <Navigate to='/Login' replace={true} />
                         )}
                         <Form className='w-25'>
                             <Form.Group className='mb-3' controlId='formBasicFirstName'>
