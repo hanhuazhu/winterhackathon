@@ -233,3 +233,11 @@ INDICATIONS_AND_USAGE
 DRUG_INTERACTIONS
 WARNINGS
 ````
+
+## Getting/Populating MyHealthFinder content from US Department of Health and Human Services:
+
+Retrieving a specific article that the user is being fed:
+```
+https://health.gov/myhealthfinder/api/v3/topicsearch.json?TopicId=527
+```
+The intention is for the user to be given articles based on health risks determined by their biometrics.
