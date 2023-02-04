@@ -37,7 +37,7 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         
-        const logincreds = {
+        const loginCreds = {
             username: this.props.username,
             password: this.state.password
         }
@@ -48,7 +48,7 @@ class Login extends Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(logincreds)
+            body: JSON.stringify(loginCreds)
             })
             .then((response) => response.json())
             .then((data) => {
