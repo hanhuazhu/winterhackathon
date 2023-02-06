@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Login from './Login';
@@ -37,12 +37,17 @@ class App extends Component {
     const isLoggedIn = this.state.isLoggedIn
     return (
       <BrowserRouter>
-      {/* BrowserRouter catches the request from the browser and re-renders the page without requesting a new DOM */}
         <div>
           <Routes>
-            {/* These routes assign an element to re-render that are imported from each JS view file */}
             <Route exact path='/' element={<Home />} />
-            <Route path='/Login' element={<Login username={username} isLoggedIn={isLoggedIn} onIsLoggedInChange={this.handleLoginChange} onUsernameChange={this.handleUserChange} />} />
+            <Route 
+              path='/Login' 
+              element= { 
+                <Login 
+                  username={username} 
+                  isLoggedIn={isLoggedIn} 
+                  onIsLoggedInChange={this.handleLoginChange} 
+                  onUsernameChange={this.handleUserChange} />} />
             <Route path='/Drug' element={<Drug />} />
             <Route path='/Signup' element={<Signup />} />
             <Route element={<NavBar />}>
