@@ -11,13 +11,13 @@ import { useParams } from 'react-router';
 
 function UserProfile() {
 
-    const [userdata, setdata] = useState();
+    const [userdata, setdata] = useState('');
 
         const params = useParams()
-        console.log(params)
-        useEffect(() => {fetch(`https://healthtracerapi.onrender.com/api/v1/user/${params.username}`)
+        useEffect(() => {fetch(`//localhost:3001/api/v1/user/${params.username}`)
             .then((response) => response.json())
-                .then((data) => setdata(data)); }, [params]);
+                .then((data) => setdata(data))
+                    .then((data) => console.log(data)) }, [params]);
 
     return (
         <Container className='box m-0 p-0 mh-100' fluid>
@@ -29,7 +29,9 @@ function UserProfile() {
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src="holder.js/100px180" />
                         <Card.Body>
-                            <Card.Title>First Name</Card.Title>
+                            <Card.Title>
+                                {userdata.length > 2 && userdata.data.firstName}
+                                </Card.Title>
                             <Card.Text>
                                 Information about the Profile of the User
                             </Card.Text>
