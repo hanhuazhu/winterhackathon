@@ -28,7 +28,7 @@ const createUserSession = async (username, password) => {
       const authToken = generateAuthToken({uuid: token.uuid});
       return {oneUser, authToken};
     } else {
-      return "Invalid username or password!"
+      throw new Error("Invalid username or password!");
     }
   } catch(error) {
       throw error;

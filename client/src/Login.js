@@ -2,7 +2,7 @@ import './Login.css';
 import { React, useState } from 'react';
 import { Row, Col, Container, Button, Form}  from 'react-bootstrap';
 import logo from './logo_2.svg';
-import { Navigate, createSearchParams, useSearchParams } from 'react-router-dom';
+import { Navigate, createSearchParams } from 'react-router-dom';
 
 const Login = props => {
     const [password, setPassword] = useState('')
@@ -27,10 +27,10 @@ const Login = props => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(loginCreds)
-            })
+        })
             .then((response) => response.json())
                 .then((data) => {
-                    if (data.data.username == username) {
+                    if (data.status === 'OK') {
                         props.onIsLoggedInChange(true);
                     }
                     else {
