@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav, Navbar, Container, Row, Col} from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import logo from './logo_2.svg';
+import Logout from './Logout';
 
 function NavBar(props) {
 
@@ -23,7 +24,7 @@ function NavBar(props) {
                   </a>
                     <Nav className='d-flex flex-column col-2 bg-dark text-center w-100 mh-100 gap-4'>
                       <Nav.Link href='/Drug' id='navlink' className='text-info fw-bolder my-5 fs-3'>Drug Information</Nav.Link>
-                      <Nav.Link href='#' id='navlink-white' className='text-white fw-bolder mt-5 fs-3'>Logout</Nav.Link>
+                      <Logout/>
                     </Nav>
               </Navbar>
           </Col>

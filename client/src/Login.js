@@ -2,7 +2,7 @@ import './Login.css';
 import { React, useState } from 'react';
 import { Row, Col, Container, Button, Form}  from 'react-bootstrap';
 import logo from './logo_2.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './UserSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,8 @@ const Login = props => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const loggedIn = useSelector((state) => state.userSession.isLoggedIn)
+    console.log(loggedIn)
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
  
