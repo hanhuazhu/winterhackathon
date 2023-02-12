@@ -9,29 +9,29 @@ import Signup from './Signup';
 import Article from './Article';
 import UserProfile from './UserProfile';
 import NavBar from './Navbar';
+import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-      currentUser: ''
-    }
-    this.handleLoginChange = this.handleLoginChange.bind(this);
-    this.handleUserChange = this.handleUserChange.bind(this);
-  }
+const App = () => {
 
-  handleUserChange(user) {
-    this.setState({currentUser: user})
-  }
+  const currentUser = useSelector((state) => state.userSession.currentUser)
+  const isAuth = useSelector((state) => state.userSession.isLoggedIn)
 
-  handleLoginChange(loggedIn) {
-    this.setState({isLoggedIn: loggedIn})
-  }
-  render() {
-    const username = this.state.currentUser
-    const isLoggedIn = this.state.isLoggedIn
-    return (
+  const [userSession, setUser] = useState({
+    user: '',
+    isLoggedIn: false,
+    loading: true
+  })
+
+  useEffect(() =>{
+    setUser({
+      user: currentUser,
+      isLoggedIn: isAuth,
+      loading: false
+    })} ,[currentUser, isAuth])
+  
+  
+  return(
       <BrowserRouter>
         <div>
           <Routes>
@@ -40,25 +40,21 @@ class App extends Component {
               element={<Home />} />
             <Route 
               path='/Login' 
-              element= { 
-                <Login 
-                  username={username} 
-                  isLoggedIn={isLoggedIn} 
-                  onIsLoggedInChange={this.handleLoginChange} 
-                  onUsernameChange={this.handleUserChange} />} />
+              element= {<Login/>} />
             <Route 
               path='/Drug' 
               element={<Drug />} />
             <Route 
               path='/Signup' 
               element={<Signup />} />
-            <Route element={<NavBar />}>
+            <Route 
+              element={<NavBar {...userSession}/>}>
               <Route 
                 path='/Biometrics' 
                 element={<Biometrics />} />
               <Route 
                 path='/UserProfile/:username'  
-                element={<UserProfile username={username}/>} />
+                element={<UserProfile {...userSession} />} />
               <Route 
                 path='/Article' 
                 element={<Article />} />
@@ -67,7 +63,7 @@ class App extends Component {
         </div>
       </BrowserRouter>
     )    
-  }
 }
+
 
 export default App;

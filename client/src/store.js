@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSessionReducer from './UserSlice'
 import { persistStore, persistReducer } from 'redux-persist'
-import sessionStorage from 'redux-persist/es/storage/session'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 

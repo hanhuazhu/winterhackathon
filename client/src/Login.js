@@ -10,10 +10,9 @@ const Login = props => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const loggedIn = useSelector((state) => state.userSession.isLoggedIn)
-    console.log(loggedIn)
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
+
  
     const handleInput = event => {
         event.target.name === 'username' ? 
