@@ -2,9 +2,14 @@ import './Login.css';
 import { React, useState } from 'react';
 import { Row, Col, Container, Button, Form}  from 'react-bootstrap';
 import logo from './logo_2.svg';
-import { Navigate, createSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from './UserSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Login = props => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
  
@@ -31,7 +36,8 @@ const Login = props => {
             .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'OK') {
-                        props.onIsLoggedInChange(true);
+                        dispatch(loginUser(username));
+                        navigate(`/UserProfile/${username}`)
                     }
                     else {
                         alert(data.data)
@@ -45,12 +51,6 @@ const Login = props => {
             fluid>
             <Row className='h-100'> 
                 <Col className= 'text-center align-items-center justify-content-center d-flex flex-column h-100'>
-                    {props.isLoggedIn && (
-                        <Navigate 
-                            to={`/UserProfile/${username}`} 
-                            search={createSearchParams({username: username})} 
-                            replace={true} />
-                    )}
                     <a href='/'>
                         <img 
                             src={logo} 
