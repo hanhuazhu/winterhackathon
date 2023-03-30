@@ -1,8 +1,50 @@
-# Frontend and Database Endpoints/APIs
+# MyHealthcare
 
 </br>
 
-## Server-side Documentation:
+Application Description: https://devpost.com/software/myhealthcare
+
+</br>
+
+# Frontend and Database Endpoints/APIs:
+
+</br>
+
+## Articles served from health.gov
+
+</br>
+
+When articles are served to the user, they are pulled from a public API offered by health.gov:
+https://health.gov/myhealthfinder/api/v3/topicsearch.json?TopicId={$ARTICLENUMBER}
+
+Future iterations of this application would serve users pertinant articles based on their biometric
+data.
+
+</br>
+
+## Getting/Populating Adverse Drug Events:
+
+Retrieving top 5 adverse drug events for listed drug:
+```
+https://api.fda.gov/drug/event.json?search=patient.drug.openfda"DRUG"&count=patient.reaction.reactionmeddrapt.exact&limit=5
+```
+For search queries, replace DRUG with the drug name to retrieve medication data in JSON format.  The RESULTS section contains the matching adverse event returned by the API.  Under Results, each adverse event report consists of multiple sections, the ones used are the following:
+TERM: “name of adverse drug event”
+COUNT: “amount of events reported within a specific timeline”
+ 
+Getting/Populating Drug Information:
+https://api.fda.gov/drug/label.json?search=DRUG&limit=1
+For search queries, replace DRUG with the drug name to retrieve medication data in JSON format.  The RESULTS section contains the matching medication data returned by the API.  Under Results, each child section contains different drug information pertinent to the drug.  Not all medications contain the same result sections.  The ones used are the following:
+````
+DESCRIPTION
+INDICATIONS_AND_USAGE
+DRUG_INTERACTIONS
+WARNINGS
+````
+
+</br>
+
+# Server-side Documentation:
 
 </br>
 
@@ -208,36 +250,3 @@ Returns something like:
 ```
 
 </br>
-
-
-## Public APIs used in the frontend:
-
-</br>
-
-## Getting/Populating Adverse Drug Events:
-
-Retrieving top 5 adverse drug events for listed drug:
-```
-https://api.fda.gov/drug/event.json?search=patient.drug.openfda"DRUG"&count=patient.reaction.reactionmeddrapt.exact&limit=5
-```
-For search queries, replace DRUG with the drug name to retrieve medication data in JSON format.  The RESULTS section contains the matching adverse event returned by the API.  Under Results, each adverse event report consists of multiple sections, the ones used are the following:
-TERM: “name of adverse drug event”
-COUNT: “amount of events reported within a specific timeline”
- 
-Getting/Populating Drug Information:
-https://api.fda.gov/drug/label.json?search=DRUG&limit=1
-For search queries, replace DRUG with the drug name to retrieve medication data in JSON format.  The RESULTS section contains the matching medication data returned by the API.  Under Results, each child section contains different drug information pertinent to the drug.  Not all medications contain the same result sections.  The ones used are the following:
-````
-DESCRIPTION
-INDICATIONS_AND_USAGE
-DRUG_INTERACTIONS
-WARNINGS
-````
-
-## Getting/Populating MyHealthFinder content from US Department of Health and Human Services:
-
-Retrieving a specific article that the user is being fed:
-```
-https://health.gov/myhealthfinder/api/v3/topicsearch.json?TopicId=527
-```
-The intention is for the user to be given articles based on health risks determined by their biometrics.
