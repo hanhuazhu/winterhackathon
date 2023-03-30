@@ -40,7 +40,7 @@ class Signup extends Component {
     handleSubmit = (event) => {
         
         event.preventDefault();
-        const data = this.state;
+        const creds = this.state;
         this.verifyInput();
         fetch('//localhost:3001/api/v1/user/',
         {
@@ -48,15 +48,29 @@ class Signup extends Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(creds)
         })
-        .then(() => {
-            let user = this.state.username;
-            this.setState({currentUser: user});
+        .then((response) => response.json())
+            .then((data) => {
+                if (data.status === "OK") {
+                    let user = this.state.username;
+                    let newBio = {"username":user}
+                    fetch('//localhost:3001/api/v1/biometrics/',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(newBio)
+                    })
+                    .then((user) => {
+                        this.setState({currentUser: user});
+                    })
+                }
+            })
         }
-        )
             
-    }
+    
     
 
     render() {

@@ -3,8 +3,11 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router';
 
 const UserProfile = props => {
+
+    const navigate = useNavigate()
 
     const [userSession, setdata] = useState(props);
     const [user, setUser] = useState({
@@ -32,22 +35,14 @@ const UserProfile = props => {
             .then((data) => setUser(data.data))
                 .then(() => {getBiometrics()}); }, [getBiometrics, userSession])
     
+    const navigateToBiometrics = () => navigate('/Biometrics')
 
     return ( 
         <Container className='box m-0 p-0 mh-100' fluid>
             <Row className='h-100'> 
                 <Col className='align-items-center justify-content-center d-flex flex-column h-100'>
-                    <Button 
-                        href="/Article" 
-                        variant='outline-dark' 
-                        size='lg'
-                        className='position-absolute top-0 end-0'>
-                                Recommended Articles
-                    </Button>
+                    <h1 className='my-4'>Welcome!</h1>
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img 
-                            variant="top" 
-                            src="holder.js/100px180" />
                         <Card.Body>
                             <Card.Title>
                                 User Info
@@ -58,50 +53,82 @@ const UserProfile = props => {
                             <Card.Text>
                                 <strong>Last Name: </strong>{user.lastName}
                             </Card.Text><br/>
-                            <Button variant="primary">Go somewhere</Button>
+                            <Button variant="primary">Update User Info</Button>
                         </Card.Body>
                     </Card>
                 </Col>
                 <Col className='align-items-center justify-content-center d-flex flex-column h-100'>
+                    <Button 
+                        href="/Article" 
+                        variant='outline-dark' 
+                        size='lg'
+                        className='my-4'>
+                                Recommended Articles
+                    </Button>
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
                         <Card.Body>
                             <Card.Title>Biometrics</Card.Title><br/>
                             {!biometrics.validData ? <Card.Subtitle>No biometric information available</Card.Subtitle> : 
                                 <div>
                                     <Card.Text>
-                                        {biometrics.height}
+                                        Height: {biometrics.height}
                                     </Card.Text>
                                     <Card.Text>
-                                        {biometrics.weight}
+                                        Weight: {biometrics.weight}
                                     </Card.Text>
                                     <Card.Text>
-                                        {biometrics.age}
+                                        Age: {biometrics.age}
+                                    </Card.Text>
+                                    {
+                                    (biometrics.bmi < 18.5) ? 
+                                        <Card.Text className='text-danger'>
+                                            BMI: {biometrics.bmi} (Underweight)
+                                        </Card.Text> :
+                                        (biometrics.bmi > 25.0) ? 
+                                            <Card.Text className='text-danger'>
+                                               BMI: {biometrics.bmi} (Overweight)
+                                            </Card.Text> :
+                                            <Card.Text>
+                                                BMI: {biometrics.bmi}
+                                            </Card.Text>
+                                    }
+                                    {
+                                        (biometrics.blood_pressure.split('/')[0] < 90) ? 
+                                            <Card.Text className='text-danger'>
+                                                BP: {biometrics.blood_pressure} (Low)
+                                            </Card.Text> :
+                                            (biometrics.blood_pressure.split('/')[0] > 130) ? 
+                                                <Card.Text className='text-danger'>
+                                                    BP: {biometrics.blood_pressure} (High)
+                                                </Card.Text> :
+                                                <Card.Text>
+                                                    BP: {biometrics.blood_pressure}
+                                                </Card.Text>
+                                    }
+                                    {
+                                        (biometrics.pulse > 100) ?
+                                            <Card.Text className='text-danger'>
+                                                Pulse: {biometrics.pulse}
+                                            </Card.Text> :
+                                            <Card.Text>
+                                                Pulse: {biometrics.pulse}
+                                            </Card.Text>
+                                    }
+                                    <Card.Text>
+                                        Blood Sugar: {biometrics.fbg}
                                     </Card.Text>
                                     <Card.Text>
-                                        {biometrics.bmi}
+                                        Exercise History: {biometrics.exercise_history}
                                     </Card.Text>
                                     <Card.Text>
-                                        {biometrics.blood_pressure}
+                                        Current Activity: {biometrics.current_exercise}
                                     </Card.Text>
                                     <Card.Text>
-                                        {biometrics.pulse}
-                                    </Card.Text>
-                                    <Card.Text>
-                                        {biometrics.fbg}
-                                    </Card.Text>
-                                    <Card.Text>
-                                        {biometrics.exercise_history}
-                                    </Card.Text>
-                                    <Card.Text>
-                                        {biometrics.smoking}
-                                    </Card.Text>
-                                    <Card.Text>
-                                        {biometrics.cholesterol_levels}
+                                        Cholesterol: {biometrics.cholesterol_levels}
                                     </Card.Text>
                                 </div>
                             }<br/>
-                            <Button href='/Biometrics' variant="primary">Go somewhere</Button>
+                            <Button onClick={navigateToBiometrics} variant="primary">Update Biometrics</Button>
                         </Card.Body>
                     </Card>
                 </Col>
