@@ -1,8 +1,7 @@
 import './Article.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col} from 'react-bootstrap';
 import { Component } from 'react';
+import Loading from './Loading';
 
 
 class Article extends Component {
@@ -45,19 +44,19 @@ class Article extends Component {
       const con = 'content'
       if (!this.state.dataLoaded) {
         return (
-          <Container className='window m-0 p-0' fluid>
+          <Container className='window m-0 p-0 h-100' fluid>
               <Row>
                   <Col>
-                   <h1 class='text-center'>Please wait one moment...</h1>
+                    <Loading/>
                   </Col>
               </Row>
           </Container>
         )
       } else {
         return (
-          <Container className='window m-0 p-0 h-100' fluid>
+          <Container className='window m-0 p-0 h-100 w-100' fluid>
               <Row>
-                  <Col className='justify-content-center mx-auto text-center'>
+                  <Col className='justify-content-center mx-auto text-center h-auto col-10'>
                     <h1>{this.state.article.Title}</h1>
                   </Col>
               </Row>
@@ -68,8 +67,12 @@ class Article extends Component {
                       {
                         this.state.article.Sections.section.map((section, i) => (
                           <div>
-                            <h3 key={sub + i}>{section.Title}</h3><br /><br />
-                            <p key={con + i}>{section.Content.replace(/<[^>]+>/g, '')}</p>
+                            <h3 key={sub + i}>
+                              {section.Title}
+                            </h3><br /><br />
+                            <p key={con + i}>
+                              {section.Content.replace(/<[^>]+>/g, '')}
+                            </p>
                           </div>
                           )
                         )

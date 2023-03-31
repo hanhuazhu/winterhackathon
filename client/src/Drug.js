@@ -1,7 +1,7 @@
 import './Drug.css';
-import {Container, Row, Col, Button, Form} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import logo from './logo_2.svg';
-import { Component, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './logo.svg';
 import PieGraph1 from './Pie-chart';
 import SearchBar from './Drug-search-bar';

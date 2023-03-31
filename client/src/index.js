@@ -4,12 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import { store, persistor} from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import Loading from './Loading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
     </React.StrictMode>
 );
 
