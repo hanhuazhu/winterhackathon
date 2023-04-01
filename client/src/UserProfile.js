@@ -18,7 +18,7 @@ const UserProfile = props => {
     })
 
     const getBiometrics = useCallback(() => {
-        fetch(`//https://healthtracerapi.onrender.com/api/v1/biometrics/${userSession.user}`)
+        fetch(`https://healthtracerapi.onrender.com/api/v1/biometrics/${userSession.user}`)
             .then((response) => response.json())
                 .then((data) => {
                     if (data.data != null) {
@@ -30,7 +30,7 @@ const UserProfile = props => {
                     
     }, [userSession, ])
 
-    useEffect(() => {fetch(`//https://healthtracerapi.onrender.com/api/v1/user/${userSession.user}`)
+    useEffect(() => {fetch(`https://healthtracerapi.onrender.com/api/v1/user/${userSession.user}`)
         .then((response) => response.json())
             .then((data) => setUser(data.data))
                 .then(() => {getBiometrics()}); }, [getBiometrics, userSession])
