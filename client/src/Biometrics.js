@@ -22,7 +22,7 @@ const Biometrics = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`//localhost:3001/api/v1/biometrics/${username}`, {
+        fetch(`//https://healthtracerapi.onrender.com/api/v1/biometrics/${username}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
