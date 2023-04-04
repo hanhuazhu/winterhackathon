@@ -30,10 +30,8 @@ const createUserSession = async (username, password) => {
       await oneUser.addToken(token);
       const authToken = generateAuthToken({uuid: token.uuid});
       return {oneUser, authToken};
-    } else if (oneUser === null) {
-      throw new Error("Null user!");
     } else {
-      throw new Error("Invalid username or password!");
+      throw new Error("Null user!");
     }
   } catch(error) {
       throw error;
