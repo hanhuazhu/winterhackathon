@@ -33,7 +33,7 @@ const createUserSession = async (username, password) => {
     } else if (oneUser === null) {
       throw new Error("Null user!");
     } else {
-      throw new Error("Null user!");
+      throw new Error("Invalid username or password!");
     }
   } catch(error) {
       throw error;
