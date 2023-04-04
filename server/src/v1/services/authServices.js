@@ -20,7 +20,7 @@ const createNewUser = async (body) => {
 
 const createUserSession = async (username, password) => {
   try {
-    const oneUser = await User.findOne({ where: {username: usename} });
+    const oneUser = await User.findOne({ where: {username: username} });
 
     // console.log('Dog',oneUser)     Debugging purposes only
 
