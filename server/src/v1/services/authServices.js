@@ -24,17 +24,19 @@ const createUserSession = async (username, password) => {
 
     // console.log('Dog',oneUser)     Debugging purposes only
 
-    //New change makes sure that oneUser isn't null before comparing passwords.r
+    //New change makes sure that oneUser isn't null before comparing passwords.
     if (oneUser && oneUser.username === username && bcrypt.compareSync(password, oneUser.password)) {
       const token = await Token.create({ UserId: oneUser.id });
       await oneUser.addToken(token);
       const authToken = generateAuthToken({uuid: token.uuid});
       return {oneUser, authToken};
-    } else if (oneUser === null){
+    } else if (oneUser === null) {
+      throw new Error("Null user!");
+    } else {
       throw new Error("Null user!");
     }
   } catch(error) {
-    throw error;
+      throw error;
   }
 }
 
