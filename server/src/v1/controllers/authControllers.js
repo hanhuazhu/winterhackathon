@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
         .status(error?.status || 500)
         .send({
           status: 'FAILED',
-          data: "Invalid username or password!"
+          data: "Invalid username or password! Control failure"
         });
   }
 };

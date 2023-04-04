@@ -29,5 +29,5 @@ app.use('/api/v1/auth', authRouter);
 
 app.listen(PORT, async() => {
   console.log(`API is open on port ${PORT}`);
-  await sequelize.sync({ force: true });
+  // await sequelize.sync({ force: true });   // Potential cause of table drops. Sync conflicting with migration scripts.
 });
