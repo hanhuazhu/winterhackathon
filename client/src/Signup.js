@@ -42,7 +42,7 @@ class Signup extends Component {
         event.preventDefault();
         const creds = this.state;
         this.verifyInput();
-        fetch('https://healthtracerapi.onrender.com/api/v1/user/  ',
+        fetch('https://healthtracerapi.onrender.com/api/v1/user/',
         {
             method: 'POST',
             headers: {
