@@ -30,10 +30,9 @@ const createUserSession = async (username, password) => {
       await oneUser.addToken(token);
       const authToken = generateAuthToken({uuid: token.uuid});
       return {oneUser, authToken};
+    } else {
+      throw new Error("Invalid username or password!");
     }
-
-    // Removed redundant else{throw new error}. Password errors handled at the control layer.
-
   } catch(error) {
     throw error;
   }
