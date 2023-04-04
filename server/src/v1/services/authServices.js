@@ -21,14 +21,17 @@ const createNewUser = async (body) => {
 const createUserSession = async (username, password) => {
   try {
     const oneUser = await User.findOne({ where: {username: username} });
-    console.log('Dog',oneUser)
-    if(oneUser.username === username && bcrypt.compareSync(password, oneUser.password)) {
+
+    // console.log('Dog',oneUser)     Debugging purposes only
+
+    //New change makes sure that oneUser isn't null before comparing passwords.
+    if (oneUser && oneUser.username === username && bcrypt.compareSync(password, oneUser.password)) {
       const token = await Token.create({ UserId: oneUser.id });
       await oneUser.addToken(token);
       const authToken = generateAuthToken({uuid: token.uuid});
       return {oneUser, authToken};
     } else {
-      throw new Error("Invalid username or password!");
+      throw new Error("Null user!");
     }
   } catch(error) {
       throw error;
